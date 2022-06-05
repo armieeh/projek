@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('Rafli@#12'),
         ]);
         
-        \App\Models\User::factory(10)->create();
+        User::factory(10)->create();
 
     }
 }

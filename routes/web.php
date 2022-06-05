@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function(){
 |--------------------------------------------------------------------------
 |
 */
-// Route::group(['middleware' => ['auth', 'CheckRole:user']], function(){
-//     Route::get('/home', [UserController::class, 'index']);
-// });
+Route::group(['middleware' => ['auth', 'CheckRole:user']], function(){
+    Route::get('/home', [UserController::class, 'index']);
+});
 
