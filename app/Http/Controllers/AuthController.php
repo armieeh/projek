@@ -19,17 +19,17 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credintials = $request->validate([
-            'email' => 'required|email:rfc',
-            'password' => 'required'
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
 
-        if (Auth::attempt($credintials)){
+        if (Auth::attempt($credentials)){
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect()->intended('/dashboard');
         }
 
-        return back()->with('loginError', 'Username / Password Salah !!!');
+        return back()->with('loginError', 'Email / Password Salah !!!');
     }
 
     public function index_register(){
@@ -48,10 +48,20 @@ class AuthController extends Controller
             'confirm' => 'required|same:password'
         ]);
 
-        $validatedData['password'] = Hash::make($validatedData['password']);
+        $validatedData['password'] = bcrypt($validatedData['password']);
 
         User::create($validatedData);
 
-        return redirect('/login');
+        return redirect('/login')->with('success', 'Pendaftaran Berhasil Silahkan Login!');
     }
+
+        //Logout
+        public function logout(Request $request){
+            Auth::logout();
+    
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+    
+            return redirect('/');
+        }
 }

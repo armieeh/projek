@@ -96,7 +96,7 @@
                 </div>
     
                 <div>
-                  <p class="mb-0 text-center">Do you have an account? <a href="/login" class="text-white-50 fw-bold">Sign In</a>
+                  <p class="mb-0 text-center">Do you have an account? <a href="/" class="text-white-50 fw-bold">Sign In</a>
                   </p>
                 </div>
     
