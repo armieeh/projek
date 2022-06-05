@@ -17,7 +17,7 @@ use App\Http\Controllers\RegisterController;
 */
 
 Route::get('/', function(){
-    return view('welcome');
+    return view('index');
 });
 
 Route::post('/actionlogin', [AuthController::class, 'login']);
@@ -27,6 +27,8 @@ Route::get('/login', [AuthController::class, 'index_login']);
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/register', [AuthController::class, 'index_register']);
+
+Route::get('students', StudentController::class)->name('students');
 
 Route::get('home', [LoginController::class, 'index'])->name('home')->middleware('auth');
 
